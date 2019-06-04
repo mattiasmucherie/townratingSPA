@@ -11,7 +11,7 @@
         <button @click="rateTown('negative')">Håla</button>
         <button @click="rateTown('positive')">Inte Håla</button>
       </div>
-      <button @click="fetchData">GET NEW</button>
+      <button @click="fetchData">NY stad</button>
       <barchart
         v-if="voted"
         v-bind:negative="town.rating.negative"
