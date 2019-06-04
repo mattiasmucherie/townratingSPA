@@ -4,7 +4,7 @@
       <h1>Håla eller ej?</h1>
       <div>
         <router-link to="/game" class="links">Starta</router-link>
-        <router-link to="/" class="links">Add city</router-link>
+        <router-link to="/about" class="links">Add city</router-link>
       </div>
     </div>
   </div>
@@ -18,14 +18,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 .links {
   display: block;
   color: #f5f5f9;

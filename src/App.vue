@@ -1,8 +1,18 @@
 <template>
   <div id="app">
+    <Navigation></Navigation>
     <router-view/>
   </div>
 </template>
+<script>
+import Navigation from "@/components/Nav.vue";
+export default {
+  name: "app",
+  components: {
+    Navigation: Navigation
+  }
+};
+</script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
@@ -12,7 +22,24 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000000;
+  height: 100vh;
 }
+html {
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
 body {
   background: rgb(244, 244, 249);
   background: linear-gradient(
@@ -23,14 +50,4 @@ body {
   margin: 0;
   padding: 0;
 }
-// #nav {
-//   padding: 30px;
-//   a {
-//     font-weight: bold;
-//     color: #2c3e50;
-//     &.router-link-exact-active {
-//       color: #42b983;
-//     }
-//   }
-// }
 </style>
