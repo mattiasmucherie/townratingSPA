@@ -58,7 +58,7 @@ figure {
   margin: 16px;
 }
 .bar {
-  fill: #04724d;
+  fill: #303d44;
   height: 21px;
   transition: fill 0.3s ease;
   font-family: inherit;
@@ -69,7 +69,7 @@ figure {
 rect {
   &:hover,
   &:focus {
-    fill: black;
+    fill: #000;
   }
 }
 </style>

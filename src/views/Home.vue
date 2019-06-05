@@ -4,7 +4,7 @@
       <h1>Håla eller ej?</h1>
       <div>
         <router-link to="/game" class="links">Starta</router-link>
-        <router-link to="/about" class="links">Add city</router-link>
+        <router-link to="/addcity" class="links">Add city</router-link>
       </div>
     </div>
   </div>

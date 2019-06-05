@@ -7,16 +7,14 @@
       <h1>{{town.name}}</h1>
       <h2>{{town.county}}</h2>
       <h2>{{town.population}}</h2>
-      <div>
+      <div v-if="!voted">
         <button @click="rateTown('negative')">Håla</button>
         <button @click="rateTown('positive')">Inte Håla</button>
       </div>
-      <button @click="fetchData">NY stad</button>
-      <barchart
-        v-if="voted"
-        v-bind:negative="town.rating.negative"
-        v-bind:positive="town.rating.positive"
-      ></barchart>
+      <div v-else>
+        <barchart v-bind:negative="town.rating.negative" v-bind:positive="town.rating.positive"></barchart>
+        <button @click="fetchData">NY stad</button>
+      </div>
     </div>
   </div>
 </template>
@@ -108,7 +106,7 @@ export default {
 button {
   color: #f5f5f9;
   text-decoration: none;
-  margin: 16px 32px;
+  margin: 16px 16px;
   padding: 16px;
   font-weight: bold;
   background: #04724d;

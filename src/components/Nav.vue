@@ -23,8 +23,6 @@ export default {};
 <style lang="scss">
 header {
   background: #586f7c;
-  display: grid;
-  grid-template-columns: repeat(2, auto);
   a {
     padding: 1em 2em;
     display: inline-block;
@@ -37,7 +35,8 @@ header {
       color: #b8dbd9;
     }
     &:hover {
-      background: rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 0px 0px 8px 8px;
     }
   }
   nav {
@@ -45,6 +44,7 @@ header {
   }
   ul {
     list-style-type: none;
+    padding: 0;
   }
   li {
     display: inline;
