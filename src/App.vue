@@ -1,15 +1,18 @@
 <template>
   <div id="app">
-    <Navigation></Navigation>
+    <Navigation/>
     <router-view/>
+    <Footer/>
   </div>
 </template>
 <script>
 import Navigation from "@/components/Nav.vue";
+import Footer from "@/components/Footer.vue";
 export default {
   name: "app",
   components: {
-    Navigation: Navigation
+    Navigation: Navigation,
+    Footer: Footer
   }
 };
 </script>
@@ -20,9 +23,16 @@ export default {
   font-family: "Josefin Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #000000;
   height: 100vh;
+  background: rgb(244, 244, 249);
+  background: linear-gradient(315deg, #f4f4f9 0%, #b8dbd9 100%);
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-areas: "header" "container" "footer";
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
 }
 html {
   font-size: 16px;
@@ -38,16 +48,5 @@ html {
 *:after {
   box-sizing: border-box;
   margin: 0;
-}
-
-body {
-  background: rgb(244, 244, 249);
-  background: linear-gradient(
-    315deg,
-    rgba(244, 244, 249, 1) 0%,
-    rgba(184, 219, 217, 1) 100%
-  );
-  margin: 0;
-  padding: 0;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="main-head">
     <nav>
       <ul>
         <li>
@@ -21,27 +21,12 @@ export default {};
 </script>
 
 <style lang="scss">
+a {
+  outline: 0;
+}
 header {
-  background: #586f7c;
-  a {
-    padding: 1em 2em;
-    display: inline-block;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: bold;
-    color: #f5f5f9;
-    font-size: 0.9em;
-    &.router-link-exact-active {
-      color: #b8dbd9;
-    }
-    &:hover {
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 0px 0px 8px 8px;
-    }
-  }
-  nav {
-    justify-self: right;
-  }
+  display: flex;
+  justify-self: center;
   ul {
     list-style-type: none;
     padding: 0;
@@ -49,16 +34,43 @@ header {
   li {
     display: inline;
   }
+  a {
+    position: relative;
+    display: inline-block;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    &.router-link-exact-active {
+      &:after {
+        content: "";
+        position: absolute;
+        height: 3px;
+        width: calc(100% - 30px);
+        bottom: 10px;
+        transition: all 0.2s ease-out;
+        background: #000;
+        left: 50%;
+        transform: translateX(-50%) scaleX(1);
+      }
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      height: 3px;
+      width: calc(100% - 30px);
+      bottom: 10px;
+      transition: all 0.2s ease-out;
+      background: #000;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+    }
+
+    &:hover:after {
+      transform: translateX(-50%) scaleX(1);
+    }
+  }
 }
-// nav {
-//   height: 10vh;
-//   a {
-//     margin: 16px 16px;
-//     font-weight: bold;
-//     color: #2c3e50;
-//     &.router-link-exact-active {
-//       color: #42b983;
-//     }
-//   }
-// }
 </style>

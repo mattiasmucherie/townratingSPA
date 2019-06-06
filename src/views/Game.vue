@@ -7,7 +7,7 @@
       <h1>{{town.name}}</h1>
       <h2>{{town.county}}</h2>
       <h2>{{town.population}}</h2>
-      <div v-if="!voted">
+      <div v-if="!voting && !voted">
         <button @click="rateTown('negative')">Håla</button>
         <button @click="rateTown('positive')">Inte Håla</button>
       </div>
@@ -15,6 +15,7 @@
         <barchart v-bind:negative="town.rating.negative" v-bind:positive="town.rating.positive"></barchart>
         <button @click="fetchData">NY stad</button>
       </div>
+      <spinner v-if="voting"></spinner>
     </div>
   </div>
 </template>
@@ -34,7 +35,8 @@ export default {
   data() {
     return {
       town: null,
-      voted: false
+      voted: false,
+      voting: false
     };
   },
   methods: {
@@ -70,21 +72,25 @@ export default {
     },
     async rateTown(vote) {
       try {
+        this.voting = true;
         const ref = db.collection("towns").doc(this.town.id);
         if (vote === "negative") {
           const snap = await ref.update({
             "rating.negative": firebase.firestore.FieldValue.increment(1)
           });
           this.town.rating.negative++;
+          this.voting = false;
         } else if (vote === "positive") {
           const snap = await ref.update({
             "rating.positive": firebase.firestore.FieldValue.increment(1)
           });
           this.town.rating.positive++;
+          this.voting = false;
         }
         this.voted = true;
       } catch (err) {
         console.log(err);
+        this.voting = false;
       }
     }
   },
@@ -96,29 +102,29 @@ export default {
 
 <style lang="scss" >
 .container {
-  margin: 5rem auto 0rem auto;
+  margin: auto;
   min-height: 50vh;
   display: flex;
   justify-content: center;
-  // align-items: center;
+  align-items: center;
   text-align: center;
 }
-button {
-  color: #f5f5f9;
-  text-decoration: none;
-  margin: 16px 16px;
-  padding: 16px;
-  font-weight: bold;
-  background: #04724d;
-  border-radius: 12px;
-  text-transform: uppercase;
-  transition: background 0.2s ease;
-  border: 4px solid #04724d;
-  cursor: pointer;
-  &:hover {
-    background: #f5f5f9;
-    color: #04724d;
-  }
-}
+// button {
+//   color: #f5f5f9;
+//   text-decoration: none;
+//   margin: 16px 16px;
+//   padding: 16px;
+//   font-weight: bold;
+//   background: #04724d;
+//   border-radius: 12px;
+//   text-transform: uppercase;
+//   transition: background 0.2s ease;
+//   border: 4px solid #04724d;
+//   cursor: pointer;
+//   &:hover {
+//     background: #f5f5f9;
+//     color: #04724d;
+//   }
+// }
 </style>
 
