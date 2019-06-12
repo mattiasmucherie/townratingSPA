@@ -6,7 +6,7 @@
       xmlns:xlink="http://www.w3.org/1999/xlink"
       class="chart"
       width="200"
-      height="80"
+      height="90"
       aria-labelledby="title"
       role="img"
     >
@@ -33,6 +33,12 @@
           ></animate>
         </rect>
         <text x="0" y="42.5" dy="0.5em">{{positive}} Inte Håla</text>
+      </g>
+      <g class="bar">
+        <rect x="-7" width="20" height="2" y="60" rx="2"></rect>
+      </g>
+      <g class="bar">
+        <text x="0" y="75" dy="0.5em">{{negative+positive}} Total</text>
       </g>
     </svg>
   </figure>
