@@ -39,12 +39,15 @@ export default {
     };
   },
   methods: {
+    // Import random data from firestore database
     async fetchData() {
       this.town = null;
       this.voted = null;
       const ref = db.collection("towns");
+      // Generate random Document ID
       const key = ref.doc().id;
       try {
+        // Query in the database for the closest "bigger" document ID.
         const snap = await ref
           .where(firebase.firestore.FieldPath.documentId(), ">=", key)
           .limit(1)
@@ -55,6 +58,7 @@ export default {
             this.town.id = doc.id;
           });
         } else {
+          // If no document was found bigger, query for the closest "smaller" docment ID.
           const snap2 = await ref
             .where(firebase.firestore.FieldPath.documentId(), "<=", key)
             .limit(1)
@@ -65,14 +69,16 @@ export default {
           });
         }
       } catch (err) {
-        //TODO: handle errors
+        // No error handling has been built yet.
         console.log(err);
       }
     },
+    // Put in a vote on a town.
     async rateTown(vote) {
       try {
-        this.voting = true;
+        this.voting = true; // The loading variable.
         const ref = db.collection("towns").doc(this.town.id);
+        // Check if posistve or negative vote and increment the rating accordingly
         if (vote === "negative") {
           const snap = await ref.update({
             "rating.negative": firebase.firestore.FieldValue.increment(1)
@@ -88,15 +94,18 @@ export default {
         }
         this.voted = true;
       } catch (err) {
+        // No error handling has been built yet.
         console.log(err);
         this.voting = false;
       }
     }
   },
   created() {
+    // Runs fetchData when mounting the page.
     this.fetchData();
   },
   computed: {
+    // Recalcultes this.town.population that comes in as an int to beautifu text, ex: 123456754 => "123 456 754"
     populationBeautified: function() {
       return this.town.population
         .toString()

@@ -6,7 +6,12 @@
         href="http://github.com/mattiasmucherie"
         target="_blank"
         rel="noopener noreferrer"
-      >Mattias Mucherie</a>
+      >Mattias Mucherie</a> |
+      <a
+        href="http://github.com/mattiasmucherie/townratingSPA"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Source</a>
     </p>
   </div>
 </template>
