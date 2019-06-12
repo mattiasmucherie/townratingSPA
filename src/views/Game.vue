@@ -3,17 +3,16 @@
     <div v-if="!town">
       <spinner/>
     </div>
-    <div v-else>
+    <div v-else class="subcontainer">
       <h1>{{town.name}}</h1>
-      <h2>{{town.county}}</h2>
-      <h2>{{town.population}}</h2>
+      <h2 class="townInfo">{{town.county}} - {{populationBeautified}}</h2>
       <div v-if="!voting && !voted">
-        <button @click="rateTown('negative')">Håla</button>
-        <button @click="rateTown('positive')">Inte Håla</button>
+        <button class="rateBtn" @click="rateTown('negative')">Håla</button>
+        <button class="rateBtn" @click="rateTown('positive')">Inte Håla</button>
       </div>
-      <div v-else>
+      <div v-else-if="!voting && voted">
         <barchart v-bind:negative="town.rating.negative" v-bind:positive="town.rating.positive"></barchart>
-        <button @click="fetchData">NY stad</button>
+        <button class="rateBtn" @click="fetchData">NY stad</button>
       </div>
       <spinner v-if="voting"></spinner>
     </div>
@@ -96,6 +95,13 @@ export default {
   },
   created() {
     this.fetchData();
+  },
+  computed: {
+    populationBeautified: function() {
+      return this.town.population
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
   }
 };
 </script>
@@ -103,28 +109,32 @@ export default {
 <style lang="scss" >
 .container {
   margin: auto;
-  min-height: 50vh;
   display: flex;
   justify-content: center;
-  align-items: center;
   text-align: center;
+  min-height: 400px;
 }
-// button {
-//   color: #f5f5f9;
-//   text-decoration: none;
-//   margin: 16px 16px;
-//   padding: 16px;
-//   font-weight: bold;
-//   background: #04724d;
-//   border-radius: 12px;
-//   text-transform: uppercase;
-//   transition: background 0.2s ease;
-//   border: 4px solid #04724d;
-//   cursor: pointer;
-//   &:hover {
-//     background: #f5f5f9;
-//     color: #04724d;
-//   }
-// }
+.rateBtn {
+  border: 3px solid #000;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  background: none;
+  font-family: inherit;
+  padding: 1rem;
+  margin: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  font-weight: 900;
+  &:hover {
+    color: #f4f4f9;
+    background: #000;
+  }
+}
+.townInfo {
+  font-weight: 100;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
 </style>
 

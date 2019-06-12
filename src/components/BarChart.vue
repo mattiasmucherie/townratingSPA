@@ -55,7 +55,7 @@ export default {
 
 <style lang="scss">
 figure {
-  margin: 16px;
+  margin: 16px auto 0px auto;
 }
 .bar {
   fill: #303d44;
