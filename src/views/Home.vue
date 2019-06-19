@@ -2,7 +2,7 @@
   <div class="container">
     <div>
       <h1>Håla eller ej?</h1>
-      <div>
+      <div class="link-container">
         <router-link to="/game" class="links">Starta</router-link>
         <router-link to="/addcity" class="links">Add city</router-link>
       </div>
@@ -22,6 +22,9 @@ h1 {
   font-size: 4rem;
   margin: 1rem auto;
 }
+.link-container {
+  margin-top: 3rem;
+}
 .links {
   position: relative;
   display: block;
@@ -29,6 +32,11 @@ h1 {
   text-transform: uppercase;
   margin: 1rem;
   font-weight: 100;
+  color: #000;
+  text-decoration: none;
+  a:visited {
+    color: #000;
+  }
 
   &:after {
     content: "";
